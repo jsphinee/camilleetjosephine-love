@@ -38,17 +38,16 @@ let rsvpSubmitted = false;
 
 // --- RSVP dynamic fields ---
 const presenceRadios = form.querySelectorAll('input[name="presence"]');
-const contactProfileRow = document.getElementById('contactProfileRow');
-const contactProfileSelect = document.getElementById('contactProfile');
+const guestCountRow = document.getElementById('guestCountRow');
+const guestCountSelect = document.getElementById('guestCount');
+const guestsContainer = document.getElementById('guestsContainer');
 const householdBox = document.getElementById('householdSuggestions');
 const contactFirstname = document.getElementById('contact_firstname');
 const contactLastname = document.getElementById('contact_lastname');
-const extraGuestsSection = document.getElementById('extraGuestsSection');
-const extraGuestsContainer = document.getElementById('extraGuestsContainer');
-const addGuestBtn = document.getElementById('addGuestBtn');
 
 let householdLookupDone = false;
-let extraGuestCounter = 0; // identifiants uniques pour les cartes ajoutées manuellement
+// Noms + profils préremplis pour certains index de convive (issus des suggestions de foyer)
+let presetGuestNames = {};
 
 const PROFILE_OPTIONS = `
   <option value="Adulte - Omnivore">Adulte - Omnivore</option>
@@ -58,25 +57,63 @@ const PROFILE_OPTIONS = `
   <option value="Bébé">Bébé</option>
 `;
 
+function renderGuestFields() {
+  const count = parseInt(guestCountSelect.value, 10) || 0;
+  guestsContainer.innerHTML = '';
+  for (let i = 1; i <= count; i++) {
+    const preset = i === 1
+      ? { firstname: contactFirstname.value.trim(), lastname: contactLastname.value.trim(), profile: presetGuestNames[1] ? presetGuestNames[1].profile : '' }
+      : (presetGuestNames[i] || { firstname: '', lastname: '', profile: '' });
+
+    const card = document.createElement('div');
+    card.className = 'guest-card';
+    card.innerHTML = `
+      <p class="guest-card-title">Convive ${i}</p>
+      <div class="guest-card-grid">
+        <div>
+          <label for="guest_${i}_firstname">Prénom</label>
+          <input type="text" id="guest_${i}_firstname" name="guest_${i}_firstname" value="${preset.firstname}" required>
+        </div>
+        <div>
+          <label for="guest_${i}_lastname">Nom</label>
+          <input type="text" id="guest_${i}_lastname" name="guest_${i}_lastname" value="${preset.lastname}" required>
+        </div>
+        <div>
+          <label for="guest_${i}_profile">Profil</label>
+          <select id="guest_${i}_profile" name="guest_${i}_profile">${PROFILE_OPTIONS}</select>
+        </div>
+      </div>
+    `;
+    guestsContainer.appendChild(card);
+    if (preset.profile) {
+      card.querySelector(`#guest_${i}_profile`).value = preset.profile;
+    }
+  }
+}
+
 function updatePresenceUI() {
   const selected = form.querySelector('input[name="presence"]:checked');
   const isComing = selected && selected.value === 'oui';
-  contactProfileRow.hidden = !isComing;
-  extraGuestsSection.hidden = !isComing;
+  guestCountRow.hidden = !isComing;
   if (isComing) {
+    renderGuestFields();
     maybeLookupHousehold();
   } else {
+    guestsContainer.innerHTML = '';
     householdBox.hidden = true;
     householdBox.innerHTML = '';
-    extraGuestsContainer.innerHTML = '';
   }
 }
 
 presenceRadios.forEach(radio => radio.addEventListener('change', updatePresenceUI));
+guestCountSelect.addEventListener('change', renderGuestFields);
 
 contactLastname.addEventListener('blur', () => {
   const selected = form.querySelector('input[name="presence"]:checked');
-  if (selected && selected.value === 'oui') maybeLookupHousehold();
+  if (selected && selected.value === 'oui') {
+    renderGuestFields(); // rafraîchit convive 1 avec le nom fraîchement tapé
+    maybeLookupHousehold();
+  }
 });
 
 // --- Recherche du foyer (via JSONP pour contourner les restrictions CORS d'Apps Script) ---
@@ -131,7 +168,7 @@ function renderHouseholdSuggestions(data) {
     row.innerHTML = `
       <div class="household-row-name">${m.prenom} ${m.nom}</div>
       <div class="household-row-fields">
-        <select class="household-presence">
+        <select class="household-presence" data-firstname="${m.prenom}" data-lastname="${m.nom}">
           <option value="non" selected>Ne sera pas présent(e)</option>
           <option value="oui">Sera présent(e)</option>
         </select>
@@ -144,102 +181,33 @@ function renderHouseholdSuggestions(data) {
     const profileSelect = row.querySelector('.household-profile');
     presenceSelect.addEventListener('change', () => {
       profileSelect.hidden = presenceSelect.value !== 'oui';
+      syncHouseholdSelections();
     });
+    profileSelect.addEventListener('change', syncHouseholdSelections);
   });
 }
 
-// --- Convives ajoutés manuellement (non trouvés dans la liste) ---
-addGuestBtn.addEventListener('click', () => {
-  extraGuestCounter++;
-  const id = extraGuestCounter;
-  const card = document.createElement('div');
-  card.className = 'guest-card';
-  card.dataset.extraId = id;
-  card.innerHTML = `
-    <div class="guest-card-header">
-      <p class="guest-card-title">Convive supplémentaire</p>
-      <button type="button" class="remove-guest-btn" aria-label="Retirer ce convive">✕</button>
-    </div>
-    <div class="guest-card-grid">
-      <div>
-        <label>Prénom</label>
-        <input type="text" class="extra-firstname" required>
-      </div>
-      <div>
-        <label>Nom</label>
-        <input type="text" class="extra-lastname" required>
-      </div>
-      <div>
-        <label>Profil</label>
-        <select class="extra-profile">${PROFILE_OPTIONS}</select>
-      </div>
-    </div>
-  `;
-  extraGuestsContainer.appendChild(card);
-  card.querySelector('.remove-guest-btn').addEventListener('click', () => card.remove());
-});
+function syncHouseholdSelections() {
+  const rows = householdBox.querySelectorAll('.household-row');
 
-// --- Compilation finale des convives juste avant l'envoi ---
-function collectFinalGuests() {
-  const guests = [];
-
-  // Convive 1 : le contact lui-même
-  guests.push({
-    firstname: contactFirstname.value.trim(),
-    lastname: contactLastname.value.trim(),
-    profile: contactProfileSelect.value
-  });
-
-  // Membres du foyer marqués "Sera présent(e)"
-  householdBox.querySelectorAll('.household-row').forEach(row => {
+  presetGuestNames = {};
+  let nextIndex = 2; // convive 1 = le contact lui-même
+  rows.forEach(row => {
     const presenceSelect = row.querySelector('.household-presence');
     if (presenceSelect.value === 'oui') {
-      const name = row.querySelector('.household-row-name').textContent.trim();
-      const [firstname, ...rest] = name.split(' ');
-      guests.push({
-        firstname,
-        lastname: rest.join(' '),
-        profile: row.querySelector('.household-profile').value
-      });
+      const profileSelect = row.querySelector('.household-profile');
+      presetGuestNames[nextIndex] = {
+        firstname: presenceSelect.dataset.firstname,
+        lastname: presenceSelect.dataset.lastname,
+        profile: profileSelect.value
+      };
+      nextIndex++;
     }
   });
 
-  // Convives ajoutés manuellement
-  extraGuestsContainer.querySelectorAll('.guest-card').forEach(card => {
-    const firstname = card.querySelector('.extra-firstname').value.trim();
-    const lastname = card.querySelector('.extra-lastname').value.trim();
-    if (firstname || lastname) {
-      guests.push({ firstname, lastname, profile: card.querySelector('.extra-profile').value });
-    }
-  });
-
-  return guests;
-}
-
-function injectHiddenGuestFields() {
-  // Retire les champs cachés d'un envoi précédent
-  form.querySelectorAll('input[data-injected="1"]').forEach(el => el.remove());
-
-  const selected = form.querySelector('input[name="presence"]:checked');
-  const isComing = selected && selected.value === 'oui';
-  const guests = isComing ? collectFinalGuests() : [];
-
-  const addHidden = (name, value) => {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = name;
-    input.value = value;
-    input.dataset.injected = '1';
-    form.appendChild(input);
-  };
-
-  addHidden('guestCount', String(guests.length));
-  guests.forEach((g, idx) => {
-    const i = idx + 1;
-    addHidden(`guest_${i}_firstname`, g.firstname);
-    addHidden(`guest_${i}_lastname`, g.lastname);
-    addHidden(`guest_${i}_profile`, g.profile);
-  });
+  const neededCount = Math.min(10, Math.max(1, nextIndex - 1));
+  guestCountSelect.value = String(neededCount);
+  renderGuestFields();
 }
 
 // --- Submission ---
@@ -251,7 +219,6 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
     return;
   }
-  injectHiddenGuestFields();
   rsvpSubmitted = true;
   formNote.textContent = 'Envoi en cours…';
   formNote.style.color = '#1b5a5a';
@@ -263,11 +230,12 @@ hiddenFrame.addEventListener('load', () => {
   formNote.textContent = 'Merci, votre réponse a bien été envoyée ! 🎉';
   formNote.style.color = '#1b5a5a';
   form.reset();
-  extraGuestsContainer.innerHTML = '';
+  guestsContainer.innerHTML = '';
   householdBox.innerHTML = '';
   householdBox.hidden = true;
-  contactProfileRow.hidden = true;
-  extraGuestsSection.hidden = true;
+  guestCountRow.hidden = true;
+  guestCountSelect.value = '1';
+  presetGuestNames = {};
   householdLookupDone = false;
   rsvpSubmitted = false;
 });

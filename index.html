@@ -169,7 +169,7 @@
   <h2 class="section-title script">RSVP</h2>
   <p class="placeholder-text center-text">Merci de confirmer votre présence avant le <strong>[date limite]</strong>.</p>
 
-  <form class="rsvp-form" id="rsvpForm" data-script-url="https://script.google.com/macros/s/AKfycbwynD4hN0Bq-n5etRB_z1KsgWpVd7TliAiMDUaLTOqiqk0_BMmxBFs6JGlJeWbjoFLMNQ/exec" action="https://script.google.com/macros/s/AKfycbwynD4hN0Bq-n5etRB_z1KsgWpVd7TliAiMDUaLTOqiqk0_BMmxBFs6JGlJeWbjoFLMNQ/exec" method="POST" target="hiddenRsvpFrame">
+  <form class="rsvp-form" id="rsvpForm" data-script-url="https://script.google.com/macros/s/AKfycbyJ26vGJHkcOnILsIzjEZgQM8sPIGhVyGDr1sEXWtwVvuHs8B1wO5qbEsPojnEVBSo9/exec" action="https://script.google.com/macros/s/AKfycbyJ26vGJHkcOnILsIzjEZgQM8sPIGhVyGDr1sEXWtwVvuHs8B1wO5qbEsPojnEVBSo9/exec" method="POST" target="hiddenRsvpFrame">
     <div class="form-row form-row-split">
       <div>
         <label for="contact_firstname">Prénom</label>
@@ -191,22 +191,23 @@
         <label class="radio-pill"><input type="radio" name="presence" value="non" required> Je ne pourrai pas venir</label>
       </div>
     </div>
-    <div class="form-row" id="contactProfileRow" hidden>
-      <label for="contactProfile">Votre profil</label>
-      <select id="contactProfile">
-        <option value="Adulte - Omnivore">Adulte - Omnivore</option>
-        <option value="Adulte - Végétarien">Adulte - Végétarien</option>
-        <option value="Enfant - Omnivore">Enfant - Omnivore</option>
-        <option value="Enfant - Végétarien">Enfant - Végétarien</option>
-        <option value="Bébé">Bébé</option>
+    <div class="form-row" id="guestCountRow" hidden>
+      <label for="guestCount">Nombre de convives (vous inclus)</label>
+      <select id="guestCount" name="guestCount">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
       </select>
     </div>
     <div id="householdSuggestions" class="household-suggestions" hidden></div>
-    <div class="form-row" id="extraGuestsSection" hidden>
-      <label>Autres convives non listés</label>
-      <div id="extraGuestsContainer"></div>
-      <button type="button" id="addGuestBtn" class="btn btn-ghost btn-small">+ Ajouter un convive</button>
-    </div>
+    <div id="guestsContainer"></div>
     <div class="form-row">
       <label for="message">Un petit mot ?</label>
       <textarea id="message" name="message" rows="3" placeholder="Facultatif"></textarea>
