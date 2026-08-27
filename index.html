@@ -7,12 +7,11 @@
 <meta name="description" content="Le mariage de Camille et Joséphine, le 6 mai 2027 en Pays Bigouden, Finistère.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Archivo+Black&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Progress wave that fills as you scroll -->
 <div class="scroll-wave" aria-hidden="true">
   <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
     <path d="M0,20 C 150,45 350,-5 600,20 C 850,45 1050,-5 1200,20" />
@@ -25,202 +24,184 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#histoire">Notre histoire</a></li>
     <li><a href="#programme">Programme</a></li>
     <li><a href="#lieu">Le lieu</a></li>
-    <li><a href="#cagnotte">Cagnotte</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#rsvp" class="nav-cta">RSVP</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <header class="hero" id="hero">
-  <div class="hero-frame">
-    <p class="eyebrow">Le mariage de</p>
-    <h1 class="hero-names">Camille <span class="amp">&amp;</span> Joséphine</h1>
-    <div class="hero-meta">
-      <span class="meta-chip"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 2v3M17 2v3M3 9h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> 6 mai 2027</span>
-      <span class="meta-chip"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> Pays Bigouden, Finistère sud</span>
-    </div>
-    <p class="hero-sub">Pont de l'Ascension — rejoignez-nous en Bretagne pour fêter ça comme il se doit.</p>
-    <a href="#rsvp" class="btn btn-primary">Je confirme ma présence</a>
+  <h1 class="hero-names script">Camille &amp; Joséphine</h1>
+  <p class="hero-sub">Célébrez notre union à nos côtés le 6 mai 2027 !</p>
+  <div class="hero-cta-row">
+    <a href="#rsvp" class="pill-btn">RSVP</a>
+    <img src="assets/canva/icon_cocktails.png" alt="" class="hero-cocktails" aria-hidden="true">
+    <a href="#programme" class="pill-btn">Détails</a>
   </div>
-  <div class="hero-art">
-    <img src="save-the-date.png" alt="Illustration save the date de Camille et Joséphine, un couple dansant devant un château breton" loading="eager">
+  <div class="cloud-photos">
+    <img src="assets/canva/photo_cloud_1.png" alt="Camille et Joséphine en extérieur" class="cloud-photo cloud-photo-1">
+    <img src="assets/canva/photo_cloud_2.png" alt="Camille et Joséphine au bord de la mer" class="cloud-photo cloud-photo-2">
+    <img src="assets/canva/photo_cloud_3.png" alt="Camille et Joséphine devant une grande roue" class="cloud-photo cloud-photo-3">
   </div>
 </header>
 
-<div class="wave-divider" aria-hidden="true">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C 200,60 400,0 600,30 C 800,60 1000,0 1200,30 L1200,60 L0,60 Z"/></svg>
-</div>
-
-<!-- NOTRE HISTOIRE -->
-<section class="section" id="histoire">
-  <p class="section-eyebrow">Chapitre 1</p>
-  <h2 class="section-title script">Notre histoire</h2>
-  <div class="story-grid">
-    <div class="story-card">
-      <span class="story-year">2019</span>
-      <p>Nous nous sommes rencontrés en Bretagne, alors que nous revenions tous les deux des États-Unis, chacun de notre côté. Le hasard a bien fait les choses.</p>
-    </div>
-    <div class="story-card">
-      <span class="story-year">Depuis</span>
-      <p>Nous avons d'abord vécu à Plougastel-Daoulas, avant de rénover notre maison à Rosporden. Camille est pilote dans la Marine Nationale et vient de Lyon ; Joséphine est bretonne d'origine.</p>
-    </div>
-    <div class="story-card">
-      <span class="story-year">Aujourd'hui</span>
-      <p>Nous avons trois enfants — Liv (10 ans), Romy (5 ans) et Abel, né en février 2026 — et c'est tout naturellement entourés d'eux que nous avons décidé de nous marier.</p>
-    </div>
-  </div>
-</section>
-
-<div class="wave-divider flip" aria-hidden="true">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C 200,60 400,0 600,30 C 800,60 1000,0 1200,30 L1200,60 L0,60 Z"/></svg>
-</div>
-
 <!-- PROGRAMME -->
-<section class="section section-alt" id="programme">
-  <p class="section-eyebrow">Chapitre 2</p>
-  <h2 class="section-title script">Le programme</h2>
-  <div class="programme-note">
-    <p>Le passage à la mairie se fera en tout petit comité, en amont de la fête.</p>
-    <p class="placeholder-text">[Le programme détaillé de la journée du 6 mai arrive bientôt — on met à jour cette page au fur et à mesure !]</p>
+<section class="section section-blue" id="programme">
+  <h2 class="section-title script">About the Wedding</h2>
+  <p class="section-kicker">Quelques détails...</p>
+  <div class="details-grid">
+    <div class="detail-item">
+      <img src="assets/canva/icon_chateau.png" alt="" class="detail-icon" aria-hidden="true">
+      <h3>La cérémonie</h3>
+      <p>Notre cérémonie aura lieu au Domaine de Kerhuel à 15h, à Plounéour-Lanvern, en Pays Bigouden.</p>
+    </div>
+    <div class="detail-item">
+      <img src="assets/canva/icon_couple.png" alt="" class="detail-icon" aria-hidden="true">
+      <h3>Réception</h3>
+      <p>Nous continuerons directement la journée sur place, avec le vin d'honneur, le repas puis la fête jusqu'au bout de la nuit !</p>
+    </div>
+    <div class="detail-item">
+      <img src="assets/canva/icon_shoes.png" alt="" class="detail-icon" aria-hidden="true">
+      <h3>Dress code</h3>
+      <p>Venez comme vous êtes ! Pas de dress code particulier, mais nous vous conseillons de prévoir une petite veste pour la fin de soirée.</p>
+    </div>
   </div>
-  <ol class="timeline">
-    <li class="timeline-item">
-      <span class="timeline-time">[Horaire]</span>
-      <div class="timeline-body">
-        <h3>Cérémonie</h3>
-        <p class="placeholder-text">[À venir]</p>
-      </div>
-    </li>
-    <li class="timeline-item">
-      <span class="timeline-time">[Horaire]</span>
-      <div class="timeline-body">
-        <h3>Cocktail</h3>
-        <p class="placeholder-text">[À venir]</p>
-      </div>
-    </li>
-    <li class="timeline-item">
-      <span class="timeline-time">[Horaire]</span>
-      <div class="timeline-body">
-        <h3>Dîner</h3>
-        <p class="placeholder-text">[À venir]</p>
-      </div>
-    </li>
-    <li class="timeline-item">
-      <span class="timeline-time">[Horaire]</span>
-      <div class="timeline-body">
-        <h3>Soirée dansante</h3>
-        <p class="placeholder-text">[À venir]</p>
-      </div>
-    </li>
-  </ol>
 </section>
 
-<div class="wave-divider" aria-hidden="true">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C 200,60 400,0 600,30 C 800,60 1000,0 1200,30 L1200,60 L0,60 Z"/></svg>
-</div>
+<section class="section section-pink" id="programme-jour">
+  <img src="assets/canva/icon_plate.png" alt="" class="plate-icon" aria-hidden="true">
+  <h2 class="section-title script">Le programme du jour</h2>
+  <div class="timeline-grid">
+    <div class="timeline-item">
+      <p class="timeline-time">3:00 PM</p>
+      <h3>Cérémonie dans le jardin</h3>
+      <p>Nous ouvrons les célébrations dans le jardin du manoir, afin de nous dire oui pour la vie !</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">5:30 PM</p>
+      <h3>Dinner Reception</h3>
+      <p>Bon appétit ! Régalons-nous, et prenons des forces pour la suite !</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">4:30 PM</p>
+      <h3>Cocktail Hour &amp; Photos</h3>
+      <p>Profitez de quelques bouchées légères, de boissons fraîches et d'un joli moment entre proches à l'heure dorée, pendant que nous immortalisons ces instants avec votre famille et vos amis.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">7:00 PM</p>
+      <h3>Dancing &amp; Open Bar</h3>
+      <p>Terminons la soirée en musique, autour de quelques verres (avec ou sans alcool aussi !), et faisons la fête tous ensemble !</p>
+    </div>
+  </div>
+  <img src="assets/canva/icon_toast.png" alt="" class="toast-icon" aria-hidden="true">
+</section>
 
 <!-- LIEU -->
-<section class="section" id="lieu">
-  <p class="section-eyebrow">Chapitre 3</p>
-  <h2 class="section-title script">Le lieu &amp; infos pratiques</h2>
-  <div class="lieu-grid">
-    <div class="lieu-card">
-      <h3>📍 Le domaine</h3>
-      <p>Manoir de Kerhuel<br>Plounéour-Lanvern<br>Pays Bigouden, Finistère</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Manoir+de+Kerhuel+Plouneour-Lanvern" class="btn btn-ghost" id="mapLink" target="_blank" rel="noopener">Voir sur la carte</a>
-    </div>
-    <div class="lieu-card">
-      <h3>🚗 Accès</h3>
-      <p class="placeholder-text">[Indications routières, gare la plus proche, aéroport, infos parking sur place.]</p>
-    </div>
-    <div class="lieu-card">
-      <h3>🛏️ Hébergement</h3>
-      <p class="placeholder-text">[Suggestions d'hôtels, chambres d'hôtes ou campings à proximité, avec liens si disponibles.]</p>
-    </div>
-    <div class="lieu-card">
-      <h3>👗 Dress code</h3>
-      <p class="placeholder-text">[Tenue souhaitée — chic champêtre, couleurs à éviter, etc.]</p>
+<section class="section section-blue section-center" id="lieu">
+  <h2 class="section-title script">Le lieu</h2>
+  <p class="lieu-text">Nous nous retrouverons au manoir de Kerhuel, à Plounéour-Lanvern, en Pays Bigouden.</p>
+  <img src="assets/canva/chateau_crop.png" alt="Illustration du Manoir de Kerhuel" class="chateau-illustration">
+</section>
+
+<!-- FAQ -->
+<section class="section section-blue" id="faq">
+  <div class="faq-layout">
+    <img src="assets/canva/photo_arch_faq.png" alt="Camille et Joséphine devant une grande roue" class="faq-photo">
+    <div class="faq-content">
+      <h2 class="section-title script">Petite FAQ</h2>
+      <div class="faq-item">
+        <h3>Le mariage est-il en extérieur ?</h3>
+        <p>Oui — du moins nous l'espérons ! Nous comptons sur la clémence du temps breton pour ce weekend de l'Ascension pour nous offrir du soleil... cependant, si la météo n'est pas de notre côté, le manoir prévoit un plan B afin que nous ne finissions pas trempés...</p>
+      </div>
+      <div class="faq-item">
+        <h3>Le mariage est-il "kids friendly" ?</h3>
+        <p>Oui ! Des baby-sitters seront là pour occuper nos chères petites têtes blondes, et une pièce leur sera entièrement dédiée afin qu'ils puissent vivre le mariage à leur rythme.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Est-il facile de se garer ?</h3>
+        <p>Oui ! Le manoir dispose d'un parking privé qui pourra sans problème accueillir tous les véhicules de nos invités.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="wave-divider flip" aria-hidden="true">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C 200,60 400,0 600,30 C 800,60 1000,0 1200,30 L1200,60 L0,60 Z"/></svg>
-</div>
-
-<!-- CAGNOTTE -->
-<section class="section section-alt section-center" id="cagnotte">
-  <p class="section-eyebrow">Chapitre 4</p>
-  <h2 class="section-title script">Liste de mariage</h2>
-  <p class="placeholder-text center-text">[Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer, une cagnotte est à votre disposition pour nous aider à financer notre voyage de noces / installation / etc.]</p>
-  <a href="#" class="btn btn-primary" id="cagnotteLink">Accéder à la cagnotte</a>
-</section>
-
-<div class="wave-divider" aria-hidden="true">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C 200,60 400,0 600,30 C 800,60 1000,0 1200,30 L1200,60 L0,60 Z"/></svg>
-</div>
-
 <!-- RSVP -->
-<section class="section" id="rsvp">
-  <p class="section-eyebrow">Chapitre 5</p>
-  <h2 class="section-title script">RSVP</h2>
-  <p class="placeholder-text center-text">Merci de confirmer votre présence avant le <strong>[date limite]</strong>.</p>
+<section class="section section-pink" id="rsvp">
+  <h2 class="section-title script">RSVP d'ici le 01/01/2027</h2>
+  <div class="rsvp-layout">
+    <div class="rsvp-side">
+      <img src="assets/canva/bow_crop.png" alt="" class="bow-illustration" aria-hidden="true">
+      <div class="rsvp-contacts">
+        <div>
+          <p class="contact-label">Téléphone Joséphine :</p>
+          <p class="contact-value">+33 6 66 06 59 92</p>
+        </div>
+        <div>
+          <p class="contact-label">Téléphone Camille :</p>
+          <p class="contact-value">+33 6 30 34 91 83</p>
+        </div>
+        <div>
+          <p class="contact-value contact-email">mariage.cj2027@gmail.com</p>
+        </div>
+      </div>
+    </div>
 
-  <form class="rsvp-form" id="rsvpForm" data-script-url="https://script.google.com/macros/s/AKfycbyJ26vGJHkcOnILsIzjEZgQM8sPIGhVyGDr1sEXWtwVvuHs8B1wO5qbEsPojnEVBSo9/exec" action="https://script.google.com/macros/s/AKfycbyJ26vGJHkcOnILsIzjEZgQM8sPIGhVyGDr1sEXWtwVvuHs8B1wO5qbEsPojnEVBSo9/exec" method="POST" target="hiddenRsvpFrame">
-    <div class="form-row form-row-split">
-      <div>
-        <label for="contact_firstname">Prénom</label>
-        <input type="text" id="contact_firstname" name="contact_firstname" required>
+    <form class="rsvp-form" id="rsvpForm" data-script-url="https://script.google.com/macros/s/AKfycbyJ26vGJHkcOnILsIzjEZgQM8sPIGhVyGDr1sEXWtwVvuHs8B1wO5qbEsPojnEVBSo9/exec" action="https://script.google.com/macros/s/AKfycbyJ26vGJHkcOnILsIzjEZgQM8sPIGhVyGDr1sEXWtwVvuHs8B1wO5qbEsPojnEVBSo9/exec" method="POST" target="hiddenRsvpFrame">
+      <div class="form-row form-row-split">
+        <div>
+          <label for="contact_firstname">Prénom</label>
+          <input type="text" id="contact_firstname" name="contact_firstname" required>
+        </div>
+        <div>
+          <label for="contact_lastname">Nom</label>
+          <input type="text" id="contact_lastname" name="contact_lastname" required>
+        </div>
       </div>
-      <div>
-        <label for="contact_lastname">Nom</label>
-        <input type="text" id="contact_lastname" name="contact_lastname" required>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
       </div>
-    </div>
-    <div class="form-row">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div class="form-row">
-      <label>Serez-vous des nôtres ?</label>
-      <div class="radio-group">
-        <label class="radio-pill"><input type="radio" name="presence" value="oui" required> Oui, avec joie 🎉</label>
-        <label class="radio-pill"><input type="radio" name="presence" value="non" required> Je ne pourrai pas venir</label>
+      <div class="form-row">
+        <label>Serez-vous des nôtres ?</label>
+        <div class="radio-group">
+          <label class="radio-pill"><input type="radio" name="presence" value="oui" required> Oui, avec joie</label>
+          <label class="radio-pill"><input type="radio" name="presence" value="non" required> Je ne pourrai pas venir</label>
+        </div>
       </div>
-    </div>
-    <div class="form-row" id="guestCountRow" hidden>
-      <label for="guestCount">Nombre de convives (vous inclus)</label>
-      <select id="guestCount" name="guestCount">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-      </select>
-    </div>
-    <div id="householdSuggestions" class="household-suggestions" hidden></div>
-    <div id="guestsContainer"></div>
-    <div class="form-row">
-      <label for="message">Un petit mot ?</label>
-      <textarea id="message" name="message" rows="3" placeholder="Facultatif"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary btn-block">Envoyer ma réponse</button>
-    <p class="form-note" id="formNote"></p>
-  </form>
-  <iframe name="hiddenRsvpFrame" id="hiddenRsvpFrame" style="display:none"></iframe>
+      <div class="form-row" id="guestCountRow" hidden>
+        <label for="guestCount">Nombre de convives (vous inclus)</label>
+        <select id="guestCount" name="guestCount">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div id="householdSuggestions" class="household-suggestions" hidden></div>
+      <div id="guestsContainer"></div>
+      <div class="form-row">
+        <label for="message">Un petit mot ?</label>
+        <textarea id="message" name="message" rows="3" placeholder="Facultatif"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Envoyer ma réponse</button>
+      <p class="form-note" id="formNote"></p>
+    </form>
+    <iframe name="hiddenRsvpFrame" id="hiddenRsvpFrame" style="display:none"></iframe>
+  </div>
 </section>
 
-<footer class="site-footer">
-  <p class="script footer-names">Camille &amp; Joséphine</p>
-  <p>6 mai 2027 · Pays Bigouden, Bretagne</p>
+<!-- SLIDE FINALE -->
+<footer class="site-footer" id="footer">
+  <p class="footer-script script">A très vite !</p>
+  <img src="assets/canva/car_crop.png" alt="Illustration voiture Just Married" class="car-illustration">
 </footer>
 
 <script src="script.js"></script>
